@@ -1,0 +1,57 @@
+.balance {
+    font-size:100px;
+    font-family: 'Oswald', sans-serif;
+}
+.currency {
+    font-family: 'Dosis';
+    font-size:30px;
+    position: relative;
+    display: inline-block;
+}
+svg:after {
+  font-family: 'Dosis';
+  content: "HOSTC";
+    display: inline-block; 
+}
+
+#container {
+  /*top: 75%;*/
+  /*left:50%;*/
+  /*position: absolute;*/
+  /*transform: translate(-50%, -50%);*/
+}
+.dotted-bg {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGUlEQVQYV2NkIBIwEqmOYVQh3pAiNnj+AwALaAEKfsPrZgAAAABJRU5ErkJggg==) 0 0;
+  background-color:white;
+}
+/*Transaction btn*/
+.transacBtns {
+  margin-top: 30px;
+}
+.transacBtns > .btn {
+  padding: 15px 60px;
+  font-family: 'Dosis';
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.transacBtns > .btn:first-child {
+  margin:60px;
+}
+.p-30 {
+  padding:20px;
+}
+.green {
+  color:green;
+  cursor: pointer;
+}
+.history-tabs > li {
+  margin:20px;
+}
+.recieved {
+  color:#50C3D1!important;
+  font-weight: 500;
+}
+.sent {
+  color:#F3828B;
+  font-weight: 500;
+}
