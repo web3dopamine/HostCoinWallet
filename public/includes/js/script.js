@@ -18,6 +18,10 @@ window.onload = function () {
 
 	setTimeout( function() {
 		// modify this one line below, and see the result !
+		
+		// $.ajax({
+		// 	url:'http://multichainrpc:CYeoxgR14cyptsTavbvcPXnLtcJULfRBaCj4DChfDEf8@localhost:6808',
+		// })
 		var currency = '<span>HOSTC</span>';
 		var balance = 23.23000000;
 		var balance = balance.toFixed(10);

@@ -25,6 +25,7 @@ class transacCtrl extends Controller
         $id =  Auth::user()->id;
         $address = DB::table('address_details')->select('*')->where('user_id',$id)->get();
     
+        
         return view('transactions.index', ['balanceError' => 0], compact('address'));
     }
 
@@ -74,6 +75,7 @@ class transacCtrl extends Controller
         $address_from = Input::get('address_from');
         $address_to = Input::get('address_to');
         $qty = Input::get('amount');
+        
         
         $response = Curl::to('http://multichainrpc:CYeoxgR14cyptsTavbvcPXnLtcJULfRBaCj4DChfDEf8@localhost:6808')
                  ->withContentType('text/plain')
@@ -150,20 +152,55 @@ class transacCtrl extends Controller
           $complete = $arr['complete'];
           if($complete == 1 ){
               $hex = $arr['hex'];
-              // send Hostcoin
-            $response = Curl::to('http://multichainrpc:CYeoxgR14cyptsTavbvcPXnLtcJULfRBaCj4DChfDEf8@localhost:6808')
+        // send Hostcoin
+         $response = Curl::to('http://multichainrpc:CYeoxgR14cyptsTavbvcPXnLtcJULfRBaCj4DChfDEf8@localhost:6808')
                  ->withContentType('text/plain')
                  ->withData('{"jsonrpc": "1.0", "id":"curltest", "method": "sendrawtransaction", "params": ["'.$hex.'"] }')
                  ->post();
           $arr = json_decode($response, true);
           
+         
+        
+          
+          $response = Curl::to('http://multichainrpc:CYeoxgR14cyptsTavbvcPXnLtcJULfRBaCj4DChfDEf8@localhost:6808')
+                 ->withContentType('text/plain')
+                 ->withData('{"jsonrpc": "1.0", "id":"curltest", "method": "getaddressbalances", "params": ["'.$address_to.'",0] }')
+                 ->post();
+          $arr = json_decode($response, true);
+        
           // record Trnx
           $transaction = new transaction;
           Transaction::create($request->all());
       
+          //Store balances of addresses
+            $response = Curl::to('http://multichainrpc:CYeoxgR14cyptsTavbvcPXnLtcJULfRBaCj4DChfDEf8@localhost:6808')
+                 ->withContentType('text/plain')
+                 ->withData('{"jsonrpc": "1.0", "id":"curltest", "method": "getaddressbalances", "params": ["'.$address_from.'",0] }')
+                 ->post();
+          $arr = json_decode($response, true);
+            
+          $address_from_balance = $arr['result'][0]['qty'];
+        
+          DB::table('address_details')
+            ->where('address', $address_from)
+            ->update(['balance' => $address_from_balance]);
+            
+          $response = Curl::to('http://multichainrpc:CYeoxgR14cyptsTavbvcPXnLtcJULfRBaCj4DChfDEf8@localhost:6808')
+                 ->withContentType('text/plain')
+                 ->withData('{"jsonrpc": "1.0", "id":"curltest", "method": "getaddressbalances", "params": ["'.$address_to.'",0] }')
+                 ->post();
+          $arr = json_decode($response, true);
+            
+          $address_to_balance = $arr['result'][0]['qty'];
+          
+          DB::table('address_details')
+            ->where('address', $address_to)
+            ->update(['balance' => $address_to_balance]);
+            
+            
           }
           
-          return view('transactions.index', ['balanceError' => 0], compact('address'));
+          return redirect('transactions');
     }
 
     public function checkBalance()

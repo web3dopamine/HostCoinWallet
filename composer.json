@@ -10,7 +10,8 @@
         "illuminate/html": "^5.0",
         "laravelcollective/html": "^5.2.0",
         "buzz/laravel-google-captcha": "^2.0",
-        "ixudra/curl": "^6.12"
+        "ixudra/curl": "^6.12",
+        "nesbot/carbon": "^1.22"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

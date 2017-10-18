@@ -41,10 +41,10 @@
                   <i class="fa fa-fw fa-list"></i>
                 </div>
                 <div class="mr-5">
-                  11 Transactions
+                  {{ $tranxCount }} Transactions
                 </div>
               </div>
-              <a href="#" class="card-footer text-white clearfix small z-1">
+              <a href="{{ secure_url('history') }}" class="card-footer text-white clearfix small z-1">
                 <span class="float-left">View Details</span>
                 <span class="float-right">
                   <i class="fa fa-angle-right"></i>
@@ -143,16 +143,27 @@
             <div class="card-columns">
 
               <!-- Example Social Card -->
+              @foreach($blogs as $b)
               <div class="card mb-3">
                 <a href="#">
-                  <img class="card-img-top img-fluid w-100" src="https://unsplash.it/700/450?image=610" alt="">
+                  <img class="card-img-top img-fluid w-100" src="public/includes/img/{{ $b->image }}" alt="">
                 </a>
                 <div class="card-body">
                   <h6 class="card-title mb-1">
-                    <a href="#">David Miller</a>
+                    <a href="#" data-toggle='modal' data-target='#descModal-{{ $b->id }}'>{{ $b->title }}</a>
                   </h6>
-                  <p class="card-text small">These waves are looking pretty good today!
-                    <a href="#">#surfsup</a>
+                  <p class="card-text small">
+                  <?php $description = substr($b->description,0,50); 
+                      echo $description."....<a href='#' data-toggle='modal' data-target='#descModal-".$b->id."'>read more</a></br>";
+                  ?>
+                    <a href="#"><?php 
+                        $tags = $b->tags;
+                        $tagsArr = explode(",", $tags);
+                        $len = sizeof($tagsArr);
+                        for($i=0; $i<$len; $i++){
+                          echo ' #'.$tagsArr[$i];
+                        }
+                    ?></a>
                   </p>
                 </div>
                 <hr class="my-0">
@@ -161,240 +172,111 @@
                     <i class="fa fa-fw fa-thumbs-up"></i>
                     Like
                   </a>
-                  <a class="mr-3 d-inline-block" href="#">
-                    <i class="fa fa-fw fa-comment"></i>
-                    Comment
-                  </a>
                   <a class="d-inline-block" href="#">
                     <i class="fa fa-fw fa-share"></i>
                     Share
                   </a>
                 </div>
                 <hr class="my-0">
-                <div class="card-body small bg-faded">
-                  <div class="media">
-                    <img class="d-flex mr-3" src="http://placehold.it/45x45" alt="">
-                    <div class="media-body">
-                      <h6 class="mt-0 mb-1">
-                        <a href="#">John Smith</a>
-                      </h6>
-                      Very nice! I wish I was there! That looks amazing!
-                      <ul class="list-inline mb-0">
-                        <li class="list-inline-item">
-                          <a href="#">Like</a>
-                        </li>
-                        <li class="list-inline-item">
-                          ·
-                        </li>
-                        <li class="list-inline-item">
-                          <a href="#">Reply</a>
-                        </li>
-                      </ul>
-                      <div class="media mt-3">
-                        <a class="d-flex pr-3" href="#">
-                          <img src="http://placehold.it/45x45" alt="">
-                        </a>
-                        <div class="media-body">
-                          <h6 class="mt-0 mb-1">
-                            <a href="#">David Miller</a>
-                          </h6>
-                          Next time for sure!
-                          <ul class="list-inline mb-0">
-                            <li class="list-inline-item">
-                              <a href="#">Like</a>
-                            </li>
-                            <li class="list-inline-item">
-                              ·
-                            </li>
-                            <li class="list-inline-item">
-                              <a href="#">Reply</a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <!--<div class="card-body small bg-faded">-->
+                <!--  <div class="media">-->
+                <!--    <img class="d-flex mr-3" src="http://placehold.it/45x45" alt="">-->
+                <!--    <div class="media-body">-->
+                <!--      <h6 class="mt-0 mb-1">-->
+                <!--        <a href="#">John Smith</a>-->
+                <!--      </h6>-->
+                <!--      Very nice! I wish I was there! That looks amazing!-->
+                <!--      <ul class="list-inline mb-0">-->
+                <!--        <li class="list-inline-item">-->
+                <!--          <a href="#">Like</a>-->
+                <!--        </li>-->
+                <!--        <li class="list-inline-item">-->
+                <!--          ·-->
+                <!--        </li>-->
+                <!--        <li class="list-inline-item">-->
+                <!--          <a href="#">Reply</a>-->
+                <!--        </li>-->
+                <!--      </ul>-->
+                <!--      <div class="media mt-3">-->
+                <!--        <a class="d-flex pr-3" href="#">-->
+                <!--          <img src="http://placehold.it/45x45" alt="">-->
+                <!--        </a>-->
+                <!--        <div class="media-body">-->
+                <!--          <h6 class="mt-0 mb-1">-->
+                <!--            <a href="#">David Miller</a>-->
+                <!--          </h6>-->
+                <!--          Next time for sure!-->
+                <!--          <ul class="list-inline mb-0">-->
+                <!--            <li class="list-inline-item">-->
+                <!--              <a href="#">Like</a>-->
+                <!--            </li>-->
+                <!--            <li class="list-inline-item">-->
+                <!--              ·-->
+                <!--            </li>-->
+                <!--            <li class="list-inline-item">-->
+                <!--              <a href="#">Reply</a>-->
+                <!--            </li>-->
+                <!--          </ul>-->
+                <!--        </div>-->
+                <!--      </div>-->
+                <!--    </div>-->
+                <!--  </div>-->
+                <!--</div>-->
                 <div class="card-footer small text-muted">
-                  Posted 32 mins ago
+                  Posted <?php
+                  $then = new DateTime($b->time);
+                  $now = new DateTime();
+                  $delta = $now->diff($then);
+                
+                  
+                  //print_r($delta);
+                  
+                  $quantities = array(
+                      'year' => $delta->y,
+                      'month' => $delta->m,
+                      'day' => $delta->d,
+                      'hour' => $delta->h,
+                      'minute' => $delta->i
+                      );
+                  
+                  $str = '';
+                  foreach($quantities as $unit => $value) {
+                      if($value == 0) continue;
+                      $str .= $value . ' ' . $unit;
+                      if($value != 1) {
+                          $str .= 's';
+                      }
+                      $str .=  ' ';
+                  }
+                  $str = $str == '' ? 'a moment ' : substr($str, 0, -2);
+                  
+                  echo $str.' ago';
+                  ?>
                 </div>
               </div>
+              
+              <!-- Modal -->
+<div id="descModal-{{ $b->id }}" class="modal fade" role="dialog">
+  <div class="modal-dialog">
 
-              <!-- Example Social Card -->
-              <div class="card mb-3">
-                <a href="#">
-                  <img class="card-img-top img-fluid w-100" src="https://unsplash.it/700/450?image=180" alt="">
-                </a>
-                <div class="card-body">
-                  <h6 class="card-title mb-1">
-                    <a href="#">John Smith</a>
-                  </h6>
-                  <p class="card-text small">Another day at the office...
-                    <a href="#">#workinghardorhardlyworking</a>
-                  </p>
-                </div>
-                <hr class="my-0">
-                <div class="card-body py-2 small">
-                  <a class="mr-3 d-inline-block" href="#">
-                    <i class="fa fa-fw fa-thumbs-up"></i>
-                    Like
-                  </a>
-                  <a class="mr-3 d-inline-block" href="#">
-                    <i class="fa fa-fw fa-comment"></i>
-                    Comment
-                  </a>
-                  <a class="d-inline-block" href="#">
-                    <i class="fa fa-fw fa-share"></i>
-                    Share
-                  </a>
-                </div>
-                <hr class="my-0">
-                <div class="card-body small bg-faded">
-                  <div class="media">
-                    <img class="d-flex mr-3" src="http://placehold.it/45x45" alt="">
-                    <div class="media-body">
-                      <h6 class="mt-0 mb-1">
-                        <a href="#">Jessy Lucas</a>
-                      </h6>
-                      Where did you get that camera?! I want one!
-                      <ul class="list-inline mb-0">
-                        <li class="list-inline-item">
-                          <a href="#">Like</a>
-                        </li>
-                        <li class="list-inline-item">
-                          ·
-                        </li>
-                        <li class="list-inline-item">
-                          <a href="#">Reply</a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer small text-muted">
-                  Posted 46 mins ago
-                </div>
-              </div>
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">{{ $b->title }}</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p><?php echo htmlspecialchars_decode(stripslashes($b->description)) ?> </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
 
-              <!-- Example Social Card -->
-              <div class="card mb-3">
-                <a href="#">
-                  <img class="card-img-top img-fluid w-100" src="https://unsplash.it/700/450?image=281" alt="">
-                </a>
-                <div class="card-body">
-                  <h6 class="card-title mb-1">
-                    <a href="#">Jeffery Wellings</a>
-                  </h6>
-                  <p class="card-text small">Nice shot from the skate park!
-                    <a href="#">#kickflip</a>
-                    <a href="#">#holdmybeer</a>
-                    <a href="#">#igotthis</a>
-                  </p>
-                </div>
-                <hr class="my-0">
-                <div class="card-body py-2 small">
-                  <a class="mr-3 d-inline-block" href="#">
-                    <i class="fa fa-fw fa-thumbs-up"></i>
-                    Like
-                  </a>
-                  <a class="mr-3 d-inline-block" href="#">
-                    <i class="fa fa-fw fa-comment"></i>
-                    Comment
-                  </a>
-                  <a class="d-inline-block" href="#">
-                    <i class="fa fa-fw fa-share"></i>
-                    Share
-                  </a>
-                </div>
-                <div class="card-footer small text-muted">
-                  Posted 1 hr ago
-                </div>
-              </div>
-
-              <!-- Example Social Card -->
-              <div class="card mb-3">
-                <a href="#">
-                  <img class="card-img-top img-fluid w-100" src="https://unsplash.it/700/450?image=185" alt="">
-                </a>
-                <div class="card-body">
-                  <h6 class="card-title mb-1">
-                    <a href="#">David Miller</a>
-                  </h6>
-                  <p class="card-text small">It's hot, and I might be lost...
-                    <a href="#">#desert</a>
-                    <a href="#">#water</a>
-                    <a href="#">#anyonehavesomewater</a>
-                    <a href="#">#noreally</a>
-                    <a href="#">#thirsty</a>
-                    <a href="#">#dehydration</a>
-                  </p>
-                </div>
-                <hr class="my-0">
-                <div class="card-body py-2 small">
-                  <a class="mr-3 d-inline-block" href="#">
-                    <i class="fa fa-fw fa-thumbs-up"></i>
-                    Like
-                  </a>
-                  <a class="mr-3 d-inline-block" href="#">
-                    <i class="fa fa-fw fa-comment"></i>
-                    Comment
-                  </a>
-                  <a class="d-inline-block" href="#">
-                    <i class="fa fa-fw fa-share"></i>
-                    Share
-                  </a>
-                </div>
-                <hr class="my-0">
-                <div class="card-body small bg-faded">
-                  <div class="media">
-                    <img class="d-flex mr-3" src="http://placehold.it/45x45" alt="">
-                    <div class="media-body">
-                      <h6 class="mt-0 mb-1">
-                        <a href="#">John Smith</a>
-                      </h6>
-                      The oasis is a mile that way, or is that just a mirage?
-                      <ul class="list-inline mb-0">
-                        <li class="list-inline-item">
-                          <a href="#">Like</a>
-                        </li>
-                        <li class="list-inline-item">
-                          ·
-                        </li>
-                        <li class="list-inline-item">
-                          <a href="#">Reply</a>
-                        </li>
-                      </ul>
-                      <div class="media mt-3">
-                        <a class="d-flex pr-3" href="#">
-                          <img src="http://placehold.it/45x45" alt="">
-                        </a>
-                        <div class="media-body">
-                          <h6 class="mt-0 mb-1">
-                            <a href="#">David Miller</a>
-                          </h6>
-                          <img class="img-fluid w-100 mb-1" src="https://unsplash.it/700/450?image=789" alt="">
-                          I'm saved, I found a cactus. How do I open this thing?
-                          <ul class="list-inline mb-0">
-                            <li class="list-inline-item">
-                              <a href="#">Like</a>
-                            </li>
-                            <li class="list-inline-item">
-                              ·
-                            </li>
-                            <li class="list-inline-item">
-                              <a href="#">Reply</a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="card-footer small text-muted">
-                  Posted yesterday
-                </div>
-              </div>
-
+  </div>
+</div>
+              @endforeach
+              
             </div>
             <!-- /Card Columns -->
 
@@ -416,7 +298,7 @@
             </div>
             <!-- Example Notifications Card -->
             <div class="card mb-3">
-              <iframe src="https://tgwidget.com/widget/?id=59cb49bc83ba8879128b4567" frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="100%" height="540px" async></iframe>
+              <iframe src="https://tgwidget.com/widget/?id=59e66e4783ba88d05b8b4567" frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="100%" height="540px" async></iframe>
             </div>
           </div>
         </div>

@@ -38,3 +38,12 @@ Route::group(['middleware'=>'auth'], function(){
 Route::get('/balance', 'transacCtrl@index');
 
 Route::get('/check_balance', 'transacCtrl@checkBalance');
+
+Route::group(['middleware'=>'auth'], function(){
+	Route::resource('blog', 'blogCtrl');
+});
+
+Route::get('/admin_panel', 'blogCtrl@admin_panel');
+Route::get('/blogs_list', 'blogCtrl@show');
+Route::get('/delete_blog', 'blogCtrl@destroy');
+Route::post('/create_blog', 'blogCtrl@create_blog');

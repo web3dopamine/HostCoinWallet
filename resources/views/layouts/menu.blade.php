@@ -1,7 +1,7 @@
 @section('menu')
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-      <a class="navbar-brand" href="#"><!--<img src="public/includes/img/hclogo.png" width="50"/>-->HostCoin Wallet</a>
+      <a class="navbar-brand" href="{{ url('/home') }}"><!--<img src="public/includes/img/hclogo.png" width="50"/>-->HostCoin Wallet</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -44,7 +44,7 @@
             </a>
           </li>
           <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-            <a class="nav-link">
+            <a class="nav-link" href="#">
               <i class="fa fa-fw fa-wrench"></i>
               <span class="nav-link-text">
                 Settings</span>
