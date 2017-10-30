@@ -12,6 +12,7 @@
         <div class="card-body">
           <form class="form-horizontal" role="form" method="POST" action="{{ url('/blog') }}">
                         {{ csrf_field() }}
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
               <label for="exampleInputEmail1">Username</label>
               <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' has-error' : '' }}" name="username" value="{{ old('email') }}" placeholder="Username">
@@ -45,6 +46,6 @@
     </div>
 
     <script src="public/includes/js/popper.min.js"></script>
-    
+        
   </body>
 @endsection

@@ -24,7 +24,7 @@
         <!--Container-->
        <div class="container">
            <div class="col-lg-12 text-center">
-               <img src="public/includes/img/hclogo.png" width="150">
+               <img src="{{ url('public/includes/img/hclogo.png') }}" width="150">
                
                <div id="container">
                 <!--<svg xmlns="http://www.w3.org/2000/svg" id="logo" viewBox="0 -60 1250 100" style="width:500px;height:100px">-->

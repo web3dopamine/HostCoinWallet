@@ -2,6 +2,7 @@
 
 @section('content')
 <body class="bg-dark">
+    <img src="{{ url('public/includes/img/logo.jpg') }}" width="30" height="30" class="credsLogo"/>
  <div class="container">
 
       <div class="card card-register mx-auto mt-5">
@@ -11,6 +12,7 @@
         <div class="card-body">
         <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
           {{ csrf_field() }}
+          
            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                 <label for="name">Name</label>
                 <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' has-error' : '' }}" name="name" value="{{ old('name') }}" placeholder="Enter full name"/>
@@ -61,5 +63,14 @@
         </div>
       </div>
     </div>
+        <footer class="bottom-footer">
+      <div class="container">
+        <div class="text-center">
+          <small>HostCoin &copy; Copyright 2017</small>
+        </div>
+      </div>
+    </footer>    
+  </body>
+
 </body>    
 @endsection

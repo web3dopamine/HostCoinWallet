@@ -1,7 +1,7 @@
 @section('menu')
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-      <a class="navbar-brand" href="{{ url('/home') }}"><!--<img src="public/includes/img/hclogo.png" width="50"/>-->HostCoin Wallet</a>
+      <a class="navbar-brand" href="{{ url('/home') }}"><img src="{{ url('public/includes/img/logo.jpg') }}" width="30" height="30"/>&nbsp;&nbsp;HostCoin Wallet</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -15,7 +15,7 @@
             </a>
           </li>
           <li class="nav-item" id="dashboard" data-toggle="tooltip" data-placement="right" title="Dashboard">
-            <a class="nav-link" href="{{ secure_url('home') }}">
+            <a class="nav-link" href="{{ url('home/value='.Auth::user()->secret_key) }}">
               <i class="fa fa-fw fa-dashboard"></i>
               <span class="nav-link-text">
                 Dashboard</span>
@@ -29,7 +29,7 @@
             </a>
             <ul class="sidenav-second-level collapse" id="collapseComponents">
               <li id="my-wallet">
-                <a href="{{ secure_url('transactions') }}">My Wallet</a>
+                <a href="{{ secure_url('transactions/'.Auth::user()->secret_key) }}">My Wallet</a>
               </li>
               <li id="transac-history">
                 <a href="{{ secure_url('history') }}">Transaction History</a>
@@ -43,8 +43,8 @@
                 Explorer</span>
             </a>
           </li>
-          <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Components">
-            <a class="nav-link" href="#">
+          <li class="nav-item" id="settings" data-toggle="tooltip" data-placement="right" title="Components">
+            <a class="nav-link" href="{{ url('settings') }}">
               <i class="fa fa-fw fa-wrench"></i>
               <span class="nav-link-text">
                 Settings</span>

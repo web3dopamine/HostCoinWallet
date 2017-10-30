@@ -12,6 +12,8 @@ use DB;
 use Carbon\Carbon;
 
 
+use App\User;
+
 class HomeController extends Controller
 {
     /**
@@ -29,7 +31,7 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $id =  Auth::user()->id;
         $address = DB::table('address_details')->select('address')->where('user_id',$id)->pluck('address');
@@ -40,6 +42,11 @@ class HomeController extends Controller
                                                            ->orWhere('address_to', '=', $address)->count();
          
          $blogs = Blog::all();
-         return view('home', ['tranxCount' => $tranxCount], compact('blogs'));
+         
+    
+        
+        return view('home', ['tranxCount' => $tranxCount], compact('blogs'));
     }
+    
+    
 }

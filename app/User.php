@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Srmklive\Authy\Auth\TwoFactor\Authenticatable as TwoFactorAuthenticatable;
+use Srmklive\Authy\Contracts\Auth\TwoFactor\Authenticatable as TwoFactorAuthenticatableContract;
 
 class User extends Authenticatable
 {
@@ -21,6 +23,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'two_factor_options'
     ];
+    
+    public function setPasswordAttribute($value) {
+        $this->attributes['password'] = bcrypt($value);
+    }    
+    
 }

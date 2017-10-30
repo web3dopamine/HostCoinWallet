@@ -199,8 +199,8 @@ class transacCtrl extends Controller
             
             
           }
-          
-          return redirect('transactions');
+          $key = Auth::user()->secret_key;
+          return redirect('transactions/'.$key);
     }
 
     public function checkBalance()

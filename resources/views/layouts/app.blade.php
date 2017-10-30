@@ -30,11 +30,12 @@
 
     <script type="text/javascript" src="{{ secure_url('public/includes/js/jquery.min.js') }}"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css" />
-    <!--<script> window.intergramId = "-1001122240430" </script>-->
-    <!--<script id="intergram" type="text/javascript" src="https://www.intergram.xyz/js/widget.js"></script>-->
+    <script> window.intergramId = "-262345979" </script>
+    <script id="intergram" type="text/javascript" src="https://www.intergram.xyz/js/widget.js"></script>
     <link href="{{ secure_url('public/includes/css/jquery-te-1.4.0.css') }}" rel="stylesheet">        
 </head>
    <body class="fixed-nav sticky-footer bg-dark" id="page-top">
+       <!--<img src="{{ url('public/includes/img/logo.jpg') }}" width="50" height="50"/>-->
     @yield('menu')   
     @yield('content')
     
@@ -62,5 +63,6 @@
     
     <script type="text/javascript" src="{{ secure_url('public/includes/js/jsfileinput/fileinput.js') }}"></script>
     <script type="text/javascript" src="{{ secure_url('public/includes/js/script.js') }}"></script>
+    
    </body>            
 </html>

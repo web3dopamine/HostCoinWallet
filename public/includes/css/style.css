@@ -73,3 +73,21 @@ svg:after {
 #submit_btn {
   margin-bottom:100px;
 }
+.removeLink {
+  text-decoration: none!important;
+  color:black!important;
+}
+.credsLogo {
+  position:absolute;
+  top:20px;
+  left:20px;
+}
+.bottom-footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 56px;
+    background-color: #e9ecef;
+    line-height: 55px;
+}

@@ -146,17 +146,22 @@
               @foreach($blogs as $b)
               <div class="card mb-3">
                 <a href="#">
-                  <img class="card-img-top img-fluid w-100" src="public/includes/img/{{ $b->image }}" alt="">
+                  <img class="card-img-top img-fluid w-100" src="/web/public/includes/img/<?php echo $b->image ?>" alt="">
                 </a>
                 <div class="card-body">
                   <h6 class="card-title mb-1">
-                    <a href="#" data-toggle='modal' data-target='#descModal-{{ $b->id }}'>{{ $b->title }}</a>
-                  </h6>
+                    <a href="#" data-toggle="modal" data-target="#descModal-{{ $b->id }}">{{ $b->title }}</a>
+                  </h6></i>
                   <p class="card-text small">
-                  <?php $description = substr($b->description,0,50); 
-                      echo $description."....<a href='#' data-toggle='modal' data-target='#descModal-".$b->id."'>read more</a></br>";
-                  ?>
-                    <a href="#"><?php 
+                  <?php 
+                  // $desc = htmlspecialchars_decode(stripslashes($b->description));
+                  // $description = substr($desc,0,50);
+
+                  
+                ?>
+                    <a href='#' data-toggle='modal' data-target='#descModal-<?php echo $b->id; ?>' style='color:black'>read more...
+                    </a></br>
+                    <a href="javascript:void(0)"><?php 
                         $tags = $b->tags;
                         $tagsArr = explode(",", $tags);
                         $len = sizeof($tagsArr);
@@ -178,50 +183,7 @@
                   </a>
                 </div>
                 <hr class="my-0">
-                <!--<div class="card-body small bg-faded">-->
-                <!--  <div class="media">-->
-                <!--    <img class="d-flex mr-3" src="http://placehold.it/45x45" alt="">-->
-                <!--    <div class="media-body">-->
-                <!--      <h6 class="mt-0 mb-1">-->
-                <!--        <a href="#">John Smith</a>-->
-                <!--      </h6>-->
-                <!--      Very nice! I wish I was there! That looks amazing!-->
-                <!--      <ul class="list-inline mb-0">-->
-                <!--        <li class="list-inline-item">-->
-                <!--          <a href="#">Like</a>-->
-                <!--        </li>-->
-                <!--        <li class="list-inline-item">-->
-                <!--          ·-->
-                <!--        </li>-->
-                <!--        <li class="list-inline-item">-->
-                <!--          <a href="#">Reply</a>-->
-                <!--        </li>-->
-                <!--      </ul>-->
-                <!--      <div class="media mt-3">-->
-                <!--        <a class="d-flex pr-3" href="#">-->
-                <!--          <img src="http://placehold.it/45x45" alt="">-->
-                <!--        </a>-->
-                <!--        <div class="media-body">-->
-                <!--          <h6 class="mt-0 mb-1">-->
-                <!--            <a href="#">David Miller</a>-->
-                <!--          </h6>-->
-                <!--          Next time for sure!-->
-                <!--          <ul class="list-inline mb-0">-->
-                <!--            <li class="list-inline-item">-->
-                <!--              <a href="#">Like</a>-->
-                <!--            </li>-->
-                <!--            <li class="list-inline-item">-->
-                <!--              ·-->
-                <!--            </li>-->
-                <!--            <li class="list-inline-item">-->
-                <!--              <a href="#">Reply</a>-->
-                <!--            </li>-->
-                <!--          </ul>-->
-                <!--        </div>-->
-                <!--      </div>-->
-                <!--    </div>-->
-                <!--  </div>-->
-                <!--</div>-->
+             
                 <div class="card-footer small text-muted">
                   Posted <?php
                   $then = new DateTime($b->time);
@@ -257,7 +219,7 @@
               
               <!-- Modal -->
 <div id="descModal-{{ $b->id }}" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
 
     <!-- Modal content-->
     <div class="modal-content">

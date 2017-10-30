@@ -11,7 +11,11 @@
         "laravelcollective/html": "^5.2.0",
         "buzz/laravel-google-captcha": "^2.0",
         "ixudra/curl": "^6.12",
-        "nesbot/carbon": "^1.22"
+        "nesbot/carbon": "^1.22",
+        "srmklive/authy": "^0.5.9",
+        "pragmarx/google2fa": "^2.0",
+        "bacon/bacon-qr-code": "^1.0",
+        "pragmarx/google2fa-laravel": "^0.1.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

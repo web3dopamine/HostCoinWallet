@@ -32,7 +32,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/google_auth';
 
     /**
      * Create a new authentication controller instance.
@@ -59,13 +59,15 @@ class AuthController extends Controller
             'g-recaptcha-response' => 'required|captcha'
         ]);
     }
-
+    
+    
     /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
      * @return User
      */
+     
     protected function create(array $data)
     {
         
@@ -110,4 +112,5 @@ class AuthController extends Controller
                 
         return $user_details;
     }
+    
 }
