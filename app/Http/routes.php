@@ -16,11 +16,11 @@ Route::get('/', function () {
 });
 
 Route::auth();
-// Route::post('/home/{key}', 'HomeController@index')->middleware(['auth']);
-Route::get('/home/value={key}', 'HomeController@index')->middleware(['auth', 'check']);
+Route::get('/home', 'HomeController@index')->middleware(['auth']);
+// Route::get('/home/value={key}', 'HomeController@index')->middleware(['auth', 'check']);
 
-Route::get('/transactions/{key}', 'transacCtrl@index')->middleware(['auth', 'check']);
-Route::post('transactions', 'transacCtrl@store');
+// Route::get('/transactions/{key}', 'transacCtrl@index')->middleware(['auth', 'check']);
+// Route::post('transactions', 'transacCtrl@store');
 
 
 Route::get('/exit', function(){
@@ -32,10 +32,22 @@ Route::get('/google_auth', [
 		'uses'=>'Controller@google_auth'
 		]);
 
+Route::get('/code', [
+		'middleware'=>'auth',
+		'uses'=>'Controller@code'
+		]);
+
+
 Route::post('/verify', [
 		'middleware'=>'auth',
 		'uses'=>'Controller@verify'
 		]);
+
+Route::post('/verifyCode', [
+		'middleware'=>'auth',
+		'uses'=>'Controller@verifyCode'
+		]);
+
 
 Route::get('history', [
 	 'middleware'=>'auth',
@@ -44,6 +56,14 @@ Route::get('history', [
 
 Route::group(['middleware'=>'auth'], function(){
 	Route::resource('explorer', 'explorerCtrl');
+});	
+
+Route::group(['middleware'=>'auth'], function(){
+	Route::resource('mining', 'miningCtrl');
+});	
+
+Route::group(['middleware'=>'auth'], function(){
+	Route::resource('transactions', 'transacCtrl');
 });	
 
 Route::get('/balance', [

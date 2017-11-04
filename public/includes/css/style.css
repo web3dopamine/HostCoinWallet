@@ -91,3 +91,6 @@ svg:after {
     background-color: #e9ecef;
     line-height: 55px;
 }
+#eth_notice {
+  display:none;
+}

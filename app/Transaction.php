@@ -8,6 +8,6 @@ class Transaction extends Model
 {
     public $timestamps = false;
     protected $fillable = [
-        'address_from', 'address_to', 'amount','description'
+        'tranx_id', 'address_from', 'address_to', 'amount', 'spent','description'
     ];
 }

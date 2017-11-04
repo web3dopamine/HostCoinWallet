@@ -18,7 +18,7 @@
             </a>
         </div>
         <div class="card-body">
-           <form method="POST" action="{{url('verify')}}">
+           <form method="POST" action="{{url('verifyCode')}}">
             {!! csrf_field() !!}
 
             @if (count($errors) > 0)
@@ -30,15 +30,8 @@
                     </ul>
                 </div>
             @endif
-            <div class="form-group text-center">
-                <img src="<?php echo $google2fa_url ?>"/>
-            </div>    
-            <div class="form-group has-feedback text-center">
-                    <p><b>  Secret Key* : {{ $key }}</b></p>
-                    <span style="color: #a94442;">* Please back up your secret key.</span>
-            </div>
             <div class="form-group has-feedback">
-                <input type="text" name="secret" class="form-control" placeholder="Token">
+                <input type="text" name="secret" class="form-control" placeholder="Enter 6-digit Authentication Code">
                 <input type="hidden" name="key" class="form-control" value="{{ $key }}">
                     
                 <p class="glyphicon glyphicon-envelope form-control-feedback text-center"  style="color: #a94442;">{{ $verify_error }}</p>

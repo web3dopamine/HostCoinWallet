@@ -32,7 +32,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/google_auth';
+    protected $redirectTo = '/code';
 
     /**
      * Create a new authentication controller instance.
@@ -56,10 +56,10 @@ class AuthController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+            'ethereum_address' => 'required|min:6|unique:users',
             'g-recaptcha-response' => 'required|captcha'
         ]);
     }
-    
     
     /**
      * Create a new user instance after a valid registration.
@@ -70,10 +70,12 @@ class AuthController extends Controller
      
     protected function create(array $data)
     {
-        
+       $this->redirectTo = 'google_auth';
+       
        $user_details =  User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'ethereum_address' => $data['ethereum_address'],
             'password' => bcrypt($data['password']),
         ]);
         
@@ -81,7 +83,7 @@ class AuthController extends Controller
         
         $id = $user_id[0];
         
-        $response = Curl::to('http://multichainrpc:CYeoxgR14cyptsTavbvcPXnLtcJULfRBaCj4DChfDEf8@localhost:6808')
+        $response = Curl::to('http://multichainrpc:6VFRLn52hgAGdvTXjAbuLG9i6H2rBBWqZ6yRbYDKK7DM@216.245.204.44:6742')
          ->withContentType('text/plain')
          ->withData( '{"jsonrpc": "1.0", "id":"curltest", "method": "createkeypairs", "params": [] }' )
          ->post();
@@ -92,18 +94,18 @@ class AuthController extends Controller
         $pubkey = $arr['result'][0]['pubkey'];
         $privkey = $arr['result'][0]['privkey'];
         
-        $response = Curl::to('http://multichainrpc:CYeoxgR14cyptsTavbvcPXnLtcJULfRBaCj4DChfDEf8@localhost:6808')
+        $response = Curl::to('http://multichainrpc:6VFRLn52hgAGdvTXjAbuLG9i6H2rBBWqZ6yRbYDKK7DM@216.245.204.44:6742')
          ->withContentType('text/plain')
          ->withData('{"jsonrpc": "1.0", "id":"curltest", "method": "importaddress", "params": ["'.$address.'","",false] }')
          ->post();
         
         
         // Permissions
-        $response = Curl::to('http://multichainrpc:CYeoxgR14cyptsTavbvcPXnLtcJULfRBaCj4DChfDEf8@localhost:6808')
-         ->withContentType('text/plain')
-         ->withData('{"jsonrpc": "1.0", "id":"curltest", "method": "grant", "params": ["'.$address.'","send,receive"] }')
-         ->post();
-        $arr = json_decode($response, true);
+        // $response = Curl::to('http://multichainrpc:CYeoxgR14cyptsTavbvcPXnLtcJULfRBaCj4DChfDEf8@localhost:6808')
+        //  ->withContentType('text/plain')
+        //  ->withData('{"jsonrpc": "1.0", "id":"curltest", "method": "grant", "params": ["'.$address.'","send,receive"] }')
+        //  ->post();
+        // $arr = json_decode($response, true);
         $encrypted = Crypt::encrypt($privkey);
         
         DB::table('address_details')->insert(

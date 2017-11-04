@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <body class="bg-dark">
     <img src="{{ url('public/includes/img/logo.jpg') }}" width="30" height="30" class="credsLogo"/>
  <div class="container">
@@ -32,7 +33,20 @@
                         </span>
                     @endif
             </div>
-
+            <div class="form-group{{ $errors->has('ethereum_address') ? ' has-error' : '' }}">
+                <label for="ethereum_address">Ethereum Address</label>
+                <input id="ethereum_address" type="text" class="form-control{{ $errors->has('ethereum_address') ? ' has-error' : '' }}" name="ethereum_address" value="{{ old('ethereum_address') }}"  placeholder="Enter Email Address">
+                <span id="eth_notice">
+                    <div class="alert alert-danger">
+                      <strong>Alert!</strong> &nbsp;Please Enter the Ethereum address from which you have bought Hostcoin Token. If you haven't bought then you can enter any ethereum erc20 address
+                    </div>
+                </span>
+                    @if ($errors->has('ethereum_address'))
+                        <span class="help-block">
+                            <strong style="color: #a94442;">{{ $errors->first('ethereum_address') }}</strong>
+                        </span>
+                    @endif
+            </div>
             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
                 <label for="password">Password</label>
                 <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' has-error' : '' }}" name="password" placeholder="Enter Password">
@@ -63,14 +77,25 @@
         </div>
       </div>
     </div>
-        <footer class="bottom-footer">
+    <footer class="bottom-footer">
       <div class="container">
         <div class="text-center">
           <small>HostCoin &copy; Copyright 2017</small>
         </div>
       </div>
     </footer>    
+    
   </body>
+    <script type="text/javascript">
+        
+        $( "#ethereum_address" ).focus(function() {
+         $( this ).next( "#eth_notice" ).css( {"display": "inline",
+                                                "color":"#a94442",
+                                                "font-weight":"900"} );
+            // $("#myModal").modal("show");
+        });
+        
 
+    </script>
 </body>    
 @endsection

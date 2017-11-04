@@ -15,7 +15,7 @@
             </a>
           </li>
           <li class="nav-item" id="dashboard" data-toggle="tooltip" data-placement="right" title="Dashboard">
-            <a class="nav-link" href="{{ url('home/value='.Auth::user()->secret_key) }}">
+            <a class="nav-link" href="{{ url('home') }}">
               <i class="fa fa-fw fa-dashboard"></i>
               <span class="nav-link-text">
                 Dashboard</span>
@@ -29,12 +29,19 @@
             </a>
             <ul class="sidenav-second-level collapse" id="collapseComponents">
               <li id="my-wallet">
-                <a href="{{ secure_url('transactions/'.Auth::user()->secret_key) }}">My Wallet</a>
+                <a href="{{ secure_url('transactions') }}">My Wallet</a>
               </li>
               <li id="transac-history">
                 <a href="{{ secure_url('history') }}">Transaction History</a>
               </li>
             </ul>
+          </li>
+          <li class="nav-item" id="mining" data-toggle="tooltip" data-placement="right" title="Tables">
+            <a class="nav-link" href="{{ secure_url('mining')  }}">
+              <i class="fa fa-fw fa-wrench"></i>
+              <span class="nav-link-text">
+                Mining</span>
+            </a>
           </li>
           <li class="nav-item"  id="explorer" data-toggle="tooltip" data-placement="right" title="Tables">
             <a class="nav-link" href="{{ secure_url('explorer')  }}">
@@ -44,11 +51,19 @@
             </a>
           </li>
           <li class="nav-item" id="settings" data-toggle="tooltip" data-placement="right" title="Components">
-            <a class="nav-link" href="{{ url('settings') }}">
-              <i class="fa fa-fw fa-wrench"></i>
+            <a class="nav-link nav-link-collapse collapsed" id="settings" data-toggle="collapse" href="#collapseComponents1" data-parent="#exampleAccordion1">
+              <i class="fa fa-fw fa-cog"></i>
               <span class="nav-link-text">
                 Settings</span>
             </a>
+            <ul class="sidenav-second-level collapse" id="collapseComponents1">
+              <li id="change_password">
+                <a href="{{ secure_url('settings') }}">Change Password</a>
+              </li>
+              <!--<li id="transac-history">-->
+              <!--  <a href="{{ secure_url('history') }}">Transaction History</a>-->
+              <!--</li>-->
+            </ul>
           </li>
         </ul>
         <ul class="navbar-nav sidenav-toggler">
@@ -67,29 +82,34 @@
               </span>
               <span class="new-indicator text-primary d-none d-lg-block">
                 <i class="fa fa-fw fa-circle"></i>
-                <span class="number">12</span>
+                <span class="number">0</span>
               </span>
             </a>
             <div class="dropdown-menu" aria-labelledby="messagesDropdown">
               <h6 class="dropdown-header">New Messages:</h6>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">
-                <strong>David Miller</strong>
-                <span class="small float-right text-muted">11:21 AM</span>
-                <div class="dropdown-message small">Hey there! This new version of SB Admin is pretty awesome! These messages clip off when they reach the end of the box so they don't overflow over to the sides!</div>
+                <strong>No Messages</strong>
+                <!--<span class="small float-right text-muted">11:21 AM</span>-->
+                <!--<div class="dropdown-message small">Hey there! This new version of SB Admin is pretty awesome! These messages clip off when they reach the end of the box so they don't overflow over to the sides!</div>-->
               </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">
-                <strong>Jane Smith</strong>
-                <span class="small float-right text-muted">11:21 AM</span>
-                <div class="dropdown-message small">I was wondering if you could meet for an appointment at 3:00 instead of 4:00. Thanks!</div>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">
-                <strong>John Doe</strong>
-                <span class="small float-right text-muted">11:21 AM</span>
-                <div class="dropdown-message small">I've sent the final files over to you for review. When you're able to sign off of them let me know and we can discuss distribution.</div>
-              </a>
+              <!--<a class="dropdown-item" href="#">-->
+              <!--  <strong>David Miller</strong>-->
+              <!--  <span class="small float-right text-muted">11:21 AM</span>-->
+              <!--  <div class="dropdown-message small">Hey there! This new version of SB Admin is pretty awesome! These messages clip off when they reach the end of the box so they don't overflow over to the sides!</div>-->
+              <!--</a>-->
+              <!--<div class="dropdown-divider"></div>-->
+              <!--<a class="dropdown-item" href="#">-->
+              <!--  <strong>Jane Smith</strong>-->
+              <!--  <span class="small float-right text-muted">11:21 AM</span>-->
+              <!--  <div class="dropdown-message small">I was wondering if you could meet for an appointment at 3:00 instead of 4:00. Thanks!</div>-->
+              <!--</a>-->
+              <!--<div class="dropdown-divider"></div>-->
+              <!--<a class="dropdown-item" href="#">-->
+              <!--  <strong>John Doe</strong>-->
+              <!--  <span class="small float-right text-muted">11:21 AM</span>-->
+              <!--  <div class="dropdown-message small">I've sent the final files over to you for review. When you're able to sign off of them let me know and we can discuss distribution.</div>-->
+              <!--</a>-->
               <div class="dropdown-divider"></div>
               <a class="dropdown-item small" href="#">
                 View all messages
@@ -104,41 +124,41 @@
               </span>
               <span class="new-indicator text-warning d-none d-lg-block">
                 <i class="fa fa-fw fa-circle"></i>
-                <span class="number">6</span>
+                <span class="number">0</span>
               </span>
             </a>
             <div class="dropdown-menu" aria-labelledby="alertsDropdown">
               <h6 class="dropdown-header">New Alerts:</h6>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">
-                <span class="text-success">
-                  <strong>
-                    <i class="fa fa-long-arrow-up"></i>
-                    Status Update</strong>
-                </span>
-                <span class="small float-right text-muted">11:21 AM</span>
-                <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
-              </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">
                 <span class="text-danger">
                   <strong>
                     <i class="fa fa-long-arrow-down"></i>
-                    Status Update</strong>
+                    No Alerts</strong>
                 </span>
-                <span class="small float-right text-muted">11:21 AM</span>
-                <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
+                <!--<span class="small float-right text-muted">11:21 AM</span>-->
+                <!--<div class="dropdown-message small">This is an automated server response message. All systems are online.</div>-->
               </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">
-                <span class="text-success">
-                  <strong>
-                    <i class="fa fa-long-arrow-up"></i>
-                    Status Update</strong>
-                </span>
-                <span class="small float-right text-muted">11:21 AM</span>
-                <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>
-              </a>
+              <!--<div class="dropdown-divider"></div>-->
+              <!--<a class="dropdown-item" href="#">-->
+              <!--  <span class="text-danger">-->
+              <!--    <strong>-->
+              <!--      <i class="fa fa-long-arrow-down"></i>-->
+              <!--      Status Update</strong>-->
+              <!--  </span>-->
+              <!--  <span class="small float-right text-muted">11:21 AM</span>-->
+              <!--  <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>-->
+              <!--</a>-->
+              <!--<div class="dropdown-divider"></div>-->
+              <!--<a class="dropdown-item" href="#">-->
+              <!--  <span class="text-success">-->
+              <!--    <strong>-->
+              <!--      <i class="fa fa-long-arrow-up"></i>-->
+              <!--      Status Update</strong>-->
+              <!--  </span>-->
+              <!--  <span class="small float-right text-muted">11:21 AM</span>-->
+              <!--  <div class="dropdown-message small">This is an automated server response message. All systems are online.</div>-->
+              <!--</a>-->
               <div class="dropdown-divider"></div>
               <a class="dropdown-item small" href="#">
                 View all alerts

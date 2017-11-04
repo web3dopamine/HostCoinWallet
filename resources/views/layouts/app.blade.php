@@ -12,6 +12,7 @@
     <link href="{{ secure_url('public/includes/css/bootstrap.min.css') }}" rel="stylesheet">
     <!--fonts-->
     <link href="https://fonts.googleapis.com/css?family=Oswald:300" rel="stylesheet">
+    <link rel="stylesheet" href="(https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400" type="text/css" />
     <link href='//fonts.googleapis.com/css?family=Dosis:400,600' rel='stylesheet' type='text/css'>
 
     <!-- Custom fonts for this template -->
@@ -30,8 +31,10 @@
 
     <script type="text/javascript" src="{{ secure_url('public/includes/js/jquery.min.js') }}"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/bootstrap.tagsinput/0.8.0/bootstrap-tagsinput.css" />
+
     <script> window.intergramId = "-262345979" </script>
     <script id="intergram" type="text/javascript" src="https://www.intergram.xyz/js/widget.js"></script>
+
     <link href="{{ secure_url('public/includes/css/jquery-te-1.4.0.css') }}" rel="stylesheet">        
 </head>
    <body class="fixed-nav sticky-footer bg-dark" id="page-top">

@@ -20,7 +20,18 @@
           </div>
         @endif  
         
-         
+        @if(session('success'))
+        <div class="alert alert-success alert-dismissable">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Congrats!</strong> {{ session('success') }}
+        </div>
+        @endif 
+        @if(session('fail'))
+        <div class="alert alert-danger alert-dismissable">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Sorry!</strong> {{ session('fail') }}
+        </div>
+        @endif 
         <!--Container-->
        <div class="container">
            <div class="col-lg-12 text-center">
@@ -32,24 +43,18 @@
                 <!--</svg>-->
                 <span style="font-size:60px;">
                 <?php
-                foreach($address as $a){
-                  $balanceAddress = $a->address;
-                }
-                
-                $response = Curl::to('http://multichainrpc:CYeoxgR14cyptsTavbvcPXnLtcJULfRBaCj4DChfDEf8@localhost:6808')
-                 ->withContentType('text/plain')
-                 ->withData('{"jsonrpc": "1.0", "id":"curltest", "method": "getaddressbalances", "params": ["'.$balanceAddress.'",0] }')
-                 ->post();
-               $arr = json_decode($response, true);
-               $balance = $arr['result'];
-               
-               
-               if(empty($balance)){
-                 echo number_format(0, 8);
-               } else {
-                 $balance = $arr['result'][0]['qty'];
+                foreach($details as $a){
+                  $balance = $a->balance;
+                  
+                  $address = $a->address;
+                  
+                  if($balance == 0){
+                     echo number_format(0, 8);
+                  } else {
                   echo number_format($balance, 8);
-               }
+                  }
+                }
+               
                 ?>
                 </span>
                   
@@ -84,7 +89,7 @@
                         <div class="form-group">
                           <label for="inputName" class="control-label">From</label>
                           <select class="form-control" name="address_from" id="fromAdd" required>
-                              @foreach($address as $a)
+                              @foreach($details as $a)
                               <option value="{{ $a->address }}">{{ $a->address }}</option>
                               @endforeach
                           </select>
@@ -146,7 +151,7 @@
                           <span class="info">View on Blockchain</span>
                         </p>
 
-                        @foreach($address as $a)
+                        @foreach($details as $a)
                               <p id="yourAddress"><b>{{ $a->address }}</b></p>
                         @endforeach
                         <span class="p-30 copyInfo" onclick="copyToClipboard('#yourAddress')"><i class="fa fa-files-o fa-3x" aria-hidden="true"></i></span>

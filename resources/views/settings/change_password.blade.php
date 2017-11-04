@@ -85,6 +85,9 @@
       <i class="fa fa-angle-up"></i>
     </a>
     <script type="text/javascript">
-      $('#settings').addClass('active');
+      $('#change_password').addClass('active');
+      $("#settings").attr("aria-expanded","true");
+      $("#settings").removeClass("collapsed");
+      $('#collapseComponents1').addClass('show');
     </script>
 @stop

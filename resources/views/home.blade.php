@@ -260,7 +260,7 @@
             </div>
             <!-- Example Notifications Card -->
             <div class="card mb-3">
-              <iframe src="https://tgwidget.com/widget/?id=59e66e4783ba88d05b8b4567" frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="100%" height="540px" async></iframe>
+              <iframe src="https://tgwidget.com/widget/?id=59f88fea83ba8876518b4567" frameborder="0" scrolling="no" horizontalscrolling="no" verticalscrolling="no" width="100%" height="540px" async></iframe>
             </div>
           </div>
         </div>

@@ -31,14 +31,15 @@ class Controller extends BaseController
         
         $email = DB::table('users')->select('email')->where('id', $id)->pluck('email');
         
-        User::where('id',$id)->update(['secret_key'=>$key]);
-        
         $email = $email[0];
         $google2fa_url = Google2FA::getQRCodeGoogleUrl(
             'HostCoin Wallet',
             $email,
             $key
         );
+        
+        
+        
         $verify_error = '';
         return view('auth.token', compact('google2fa_url','key','verify_error')); 
         
@@ -52,10 +53,16 @@ class Controller extends BaseController
         $secret = $request->input('secret');
         $key = $request->input('key');
         $google2fa = new Google2FA();
+        
         $valid = $google2fa::verifyKey($key, $secret);
         if ($valid){
-                return redirect('/home/value='.$key);
+                $id = Auth::user()->id;
+                User::where('id',$id)->update(['secret_key'=>$key]);
+        
+                return redirect('/home');
             } else {
+                // echo "bad";
+                // exit;
                 $google2fa = new Google2FA();
         
                 $user = new User;
@@ -76,6 +83,29 @@ class Controller extends BaseController
                 );
                 $verify_error = 'Oops..! Could not Verify. Please try again ';
                 return view('auth.token', compact('google2fa_url','key','verify_error')); 
+            }
+    }
+    
+    public function code(Request $request){
+                $key = Auth::user()->secret_key;
+                $verify_error = '';
+                return view('auth.code', compact('key','verify_error')); 
+    }
+    
+    public function verifyCode(Request $request){
+            
+            $secret = $request->input('secret');
+            $key = $request->input('key');
+            $google2fa = new Google2FA();
+        
+        $valid = $google2fa::verifyKey($key, $secret);
+        if ($valid){
+                $id = Auth::user()->id;
+            
+                return redirect('/home');
+            } else {
+                $verify_error = 'Oops..! Could not Verify. Please try again ';
+                return view('auth.code', compact('key','verify_error')); 
             }
     }
 }
