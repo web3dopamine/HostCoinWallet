@@ -3,9 +3,6 @@
 @section('content')
 <style type="text/css">
 
-.font-roboto {
-  font-family: 'roboto condensed';
-}
 
 .modal {
   position: fixed;
@@ -14,7 +11,7 @@
   bottom: 0;
   left: 0;
   overflow: hidden;
-  font-family: 'roboto condensed';
+  
 }
 
 .modal-dialog {
@@ -182,15 +179,15 @@ p {
       <div class="modal-body">
         <h2>Welcome</h2>
 
-        <p> Welcome To HostCoin Wallet V 0.0.1. In this wallet you will be able to exchange your HostCoin Tokens and Mine HostCoin Tokens. We are still adding New Exiciting Features to the wallet. Version Release and Code will be shown on <a href=""> Github </a></p>
+        <p style="font-family:"> Welcome To HostCoin Wallet V 0.0.1. In this wallet you will be able to exchange and Mine HostCoin Tokens. We are still adding New Exiciting Features to the wallet. Version Release and Code will be shown on <a href=""> Github </a></p>
         
         <h2>Security Update</h2>
 
-        <p> We have added Google Authentication for security reasons, those who have already registered will have to register AGAIN and safegaurd the secret key provided. Your HostCoin tokens will be reflected within 72 hours of your registeration.</p>
+        <p> We have added Google Authentication for security reasons, those who have already registered will have to <b style="color: #a94442;">REGISTER AGAIN</b> and safegaurd the secret key provided. Your HostCoin tokens will be reflected within <b style="color: #a94442;">72 hours</b> of your registeration.</p>
 
         <h2>Tokenlot Buyers</h2>
 
-        <p>Those who have bought from HostCoin Tokens tokelot.com, their tokens will be reflected on 1st December 2017.</p>
+        <p>Those who have bought from HostCoin Tokens tokelot.com, their tokens will be reflected on <b style="color: #a94442;"> 1st December 2017.</b></p>
       </div>
       <!-- body -->
 
@@ -198,7 +195,7 @@ p {
       <div class="modal-footer">
         <button class="btn btn-primary"
                 data-dismiss="modal">
-          close
+          CLOSE
         </button>
       </div>
       <!-- footer -->
@@ -221,7 +218,7 @@ p {
         <h4 class="modal-title"><img src="{{ url('public/includes/img/logo.jpg') }}" width="30" height="30" class=""/> Welcome to HOSTCOIN WALLET - V 0.0.1</h4>
       </div>
       <div class="modal-body">
-        <p style="color: #a94442;">Note : We have added Google authentication for extra security hence you will have to register again,
+        <p style="">Note : We have added Google authentication for extra security hence you will have to register again,
         Your HostCoin Tokens will reflect within 72 hours of your Registeration.</p>
         <p style="color: #a94442;">Those who bought HostCoin Tokens from Tokenlot will be reflected on 1st December</p>
         
