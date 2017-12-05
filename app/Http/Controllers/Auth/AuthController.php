@@ -56,6 +56,7 @@ class AuthController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
+            'checkbox' => 'required',
             'ethereum_address' => 'required|min:6|unique:users',
             'g-recaptcha-response' => 'required|captcha'
         ]);
@@ -89,7 +90,8 @@ class AuthController extends Controller
          ->post();
         
         $arr = json_decode($response, true);
-        
+        // print_r($arr);
+        // exit;
         $address = $arr['result'][0]['address'];
         $pubkey = $arr['result'][0]['pubkey'];
         $privkey = $arr['result'][0]['privkey'];

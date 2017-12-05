@@ -51,7 +51,7 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Foundation\Http\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        '2fa' => \PragmaRX\Google2FALaravel\Middleware::class,
+        'Google2FA' => \PragmaRX\Google2FALaravel\Middleware::class,
         // 'check' => \App\Http\Middleware\checkQRcode::class,
     ];
 }

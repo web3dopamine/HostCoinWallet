@@ -17,6 +17,7 @@ Route::get('/', function () {
 
 Route::auth();
 Route::get('/home', 'HomeController@index')->middleware(['auth']);
+Route::get('/demo', 'HomeController@demo');
 // Route::get('/home/value={key}', 'HomeController@index')->middleware(['auth', 'check']);
 
 // Route::get('/transactions/{key}', 'transacCtrl@index')->middleware(['auth', 'check']);
@@ -28,23 +29,23 @@ Route::get('/exit', function(){
 });
 
 Route::get('/google_auth', [
-		'middleware'=>'auth',
+		'middleware'=>['auth'],
 		'uses'=>'Controller@google_auth'
 		]);
 
 Route::get('/code', [
-		'middleware'=>'auth',
+		'middleware'=>['auth'],
 		'uses'=>'Controller@code'
 		]);
 
 
 Route::post('/verify', [
-		'middleware'=>'auth',
+		'middleware'=>['auth'],
 		'uses'=>'Controller@verify'
 		]);
 
 Route::post('/verifyCode', [
-		'middleware'=>'auth',
+		'middleware'=>['auth'],
 		'uses'=>'Controller@verifyCode'
 		]);
 

@@ -13,7 +13,7 @@
           <li class="breadcrumb-item active">My Wallet</li>
         </ol>
         
-        @if($balanceError == 1)
+        @if($balanceError == 1 || empty($details))
         <div class="alert alert-danger alert-dismissable">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
             <strong>Oops!</strong> Transaction Could not be completed due to Insufficient Balance...
@@ -43,6 +43,7 @@
                 <!--</svg>-->
                 <span style="font-size:60px;">
                 <?php
+                
                 foreach($details as $a){
                   $balance = $a->balance;
                   

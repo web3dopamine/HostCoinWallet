@@ -152,6 +152,7 @@ return [
         Ixudra\Curl\CurlServiceProvider::class,
         Srmklive\Authy\Providers\AuthyServiceProvider::class,
         PragmaRX\Google2FALaravel\ServiceProvider::class,
+        willvincent\Feeds\FeedsServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -213,6 +214,7 @@ return [
         'Input' => Illuminate\Support\Facades\Input::class,
         'Authy' => Srmklive\Authy\Facades\Authy::class,
         'Google2FA' => PragmaRX\Google2FALaravel\Facade::class,
+        'Feeds'    => willvincent\Feeds\Facades\FeedsFacade::class,
     ],
 
 ];

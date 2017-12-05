@@ -1,0 +1,9 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = true
+[remote "origin"]
+	url = https://tahadhailey@bitbucket.org/tahadhailey/hostcoin-wallet.git
+	fetch = +refs/*:refs/*
+	mirror = true
+	pushurl = https://github.com/hostcoinwallet/Development.git

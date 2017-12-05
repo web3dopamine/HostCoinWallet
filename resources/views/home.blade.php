@@ -23,11 +23,11 @@
                   <i class="fa fa-fw fa-comments"></i>
                 </div>
                 <div class="mr-5">
-                  26 New Messages!
+                  0 New Messages!
                 </div>
               </div>
               <a href="#" class="card-footer text-white clearfix small z-1">
-                <span class="float-left">View Details</span>
+                <span class="float-left">Coming soon!</span>
                 <span class="float-right">
                   <i class="fa fa-angle-right"></i>
                 </span>
@@ -89,14 +89,32 @@
             </div>
           </div>
         </div>
-
+       
         <!-- Area Chart Example -->
-        <div class="card mb-3">
+        <div class="card mb-3" style="display:none">
           <div class="card-header">
             <i class="fa fa-area-chart"></i>
-            HostCoin/US Dollar (HOSTC/USD) Price Chart
+            RSS feed
           </div>
-          <div class="card-body">
+          <div class="card-body col-lg-4">
+            <?php 
+            foreach($coindeskRss as $rss){ ?>
+            
+            <div class="alert alert-default">
+              <strong><?php print_r($title = $rss['child']['']['title'][0]['data']); ?></strong> 
+              <p><?php print_r($description = $rss['child']['']['description'][0]['data']); ?></p>
+            </div>
+            <?php 
+              
+            }
+           ?>
+               
+               <!--print_r($link = $rss['child']['']['link'][0]['data']);-->
+               <!--print_r($pubDate = $rss['child']['']['pubDate'][0]['data']);-->
+               
+            
+          </div>
+          <div class="card-body" style="display:none">
             <canvas id="myAreaChart" width="100%" height="30"></canvas>
           </div>
           <div class="card-footer small text-muted">
@@ -109,7 +127,7 @@
           <div class="col-lg-8">
 
             <!-- Example Bar Chart Card -->
-            <div class="card mb-3">
+            <div class="card mb-3" style="display:none">
               <div class="card-header">
                 <i class="fa fa-bar-chart"></i>
                 HostCoin v/s AltCoins
@@ -244,9 +262,10 @@
 
           </div>
 
+    
           <div class="col-lg-4">
             <!-- Example Pie Chart Card -->
-            <div class="card mb-3">
+            <div class="card mb-3" style="margin-top:55px">
               <div class="card-header">
                 <i class="fa fa-pie-chart"></i>
                 HostCoin Pie Chart
@@ -264,274 +283,311 @@
             </div>
           </div>
         </div>
-
-        <!-- Example Tables Card -->
-        <div class="card mb-3">
-          <div class="card-header">
-            <i class="fa fa-table"></i>
-            Recent Blocks
-          </div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table class="table table-bordered" width="100%" id="dataTable" cellspacing="0">
-                <thead>
-                  <tr>
-                    <th>Height</th>
-                    <th>Age</th>
-                    <th>Transactions</th>
-                    <th>Mined By</th>
-                    <th>Size</th>
-                  </tr>
-                </thead>
-                <tfoot>
-                  <tr>
-                    <th>Height</th>
-                    <th>Age</th>
-                    <th>Transactions</th>
-                    <th>Mined By</th>
-                    <th>Size</th>
-                  </tr>
-                </tfoot>
-                <tbody>
-                  <tr>
-                    <td>482671</td>
-                    <td>27 minutes ago</td>
-                    <td>1802</td>
-                    <td></td>
-                    <td>999140</td>
-                  </tr>
-                  <tr>
-                    <td>482670</td>
-                    <td>An Hour ago</td>
-                    <td>2465</td>
-                    <td>HOSTC</td>
-                    <td>993498</td>
-                  </tr>
-                  <tr>
-                    <td>4826769</td>
-                    <td>2 Hours ago</td>
-                    <td>2412</td>
-                    <td></td>
-                    <td>998524</td>
-                  </tr>
-                   <tr>
-                    <td>482671</td>
-                    <td>27 minutes ago</td>
-                    <td>1802</td>
-                    <td></td>
-                    <td>999140</td>
-                  </tr>
-                  <tr>
-                    <td>482670</td>
-                    <td>An Hour ago</td>
-                    <td>2465</td>
-                    <td>HOSTC</td>
-                    <td>993498</td>
-                  </tr>
-                  <tr>
-                    <td>4826769</td>
-                    <td>2 Hours ago</td>
-                    <td>2412</td>
-                    <td></td>
-                    <td>998524</td>
-                  </tr>
-                   <tr>
-                    <td>482671</td>
-                    <td>27 minutes ago</td>
-                    <td>1802</td>
-                    <td></td>
-                    <td>999140</td>
-                  </tr>
-                  <tr>
-                    <td>482670</td>
-                    <td>An Hour ago</td>
-                    <td>2465</td>
-                    <td>HOSTC</td>
-                    <td>993498</td>
-                  </tr>
-                  <tr>
-                    <td>4826769</td>
-                    <td>2 Hours ago</td>
-                    <td>2412</td>
-                    <td></td>
-                    <td>998524</td>
-                  </tr>
-                   <tr>
-                    <td>482671</td>
-                    <td>27 minutes ago</td>
-                    <td>1802</td>
-                    <td></td>
-                    <td>999140</td>
-                  </tr>
-                  <tr>
-                    <td>482670</td>
-                    <td>An Hour ago</td>
-                    <td>2465</td>
-                    <td>HOSTC</td>
-                    <td>993498</td>
-                  </tr>
-                  <tr>
-                    <td>4826769</td>
-                    <td>2 Hours ago</td>
-                    <td>2412</td>
-                    <td></td>
-                    <td>998524</td>
-                  </tr>
-                   <tr>
-                    <td>482671</td>
-                    <td>27 minutes ago</td>
-                    <td>1802</td>
-                    <td></td>
-                    <td>999140</td>
-                  </tr>
-                  <tr>
-                    <td>482670</td>
-                    <td>An Hour ago</td>
-                    <td>2465</td>
-                    <td>HOSTC</td>
-                    <td>993498</td>
-                  </tr>
-                  <tr>
-                    <td>4826769</td>
-                    <td>2 Hours ago</td>
-                    <td>2412</td>
-                    <td></td>
-                    <td>998524</td>
-                  </tr>
-                   <tr>
-                    <td>482671</td>
-                    <td>27 minutes ago</td>
-                    <td>1802</td>
-                    <td></td>
-                    <td>999140</td>
-                  </tr>
-                  <tr>
-                    <td>482670</td>
-                    <td>An Hour ago</td>
-                    <td>2465</td>
-                    <td>HOSTC</td>
-                    <td>993498</td>
-                  </tr>
-                  <tr>
-                    <td>4826769</td>
-                    <td>2 Hours ago</td>
-                    <td>2412</td>
-                    <td></td>
-                    <td>998524</td>
-                  </tr>
-                   <tr>
-                    <td>482671</td>
-                    <td>27 minutes ago</td>
-                    <td>1802</td>
-                    <td></td>
-                    <td>999140</td>
-                  </tr>
-                  <tr>
-                    <td>482670</td>
-                    <td>An Hour ago</td>
-                    <td>2465</td>
-                    <td>HOSTC</td>
-                    <td>993498</td>
-                  </tr>
-                  <tr>
-                    <td>4826769</td>
-                    <td>2 Hours ago</td>
-                    <td>2412</td>
-                    <td></td>
-                    <td>998524</td>
-                  </tr>
-                   <tr>
-                    <td>482671</td>
-                    <td>27 minutes ago</td>
-                    <td>1802</td>
-                    <td></td>
-                    <td>999140</td>
-                  </tr>
-                  <tr>
-                    <td>482670</td>
-                    <td>An Hour ago</td>
-                    <td>2465</td>
-                    <td>HOSTC</td>
-                    <td>993498</td>
-                  </tr>
-                  <tr>
-                    <td>4826769</td>
-                    <td>2 Hours ago</td>
-                    <td>2412</td>
-                    <td></td>
-                    <td>998524</td>
-                  </tr>
-                   <tr>
-                    <td>482671</td>
-                    <td>27 minutes ago</td>
-                    <td>1802</td>
-                    <td></td>
-                    <td>999140</td>
-                  </tr>
-                  <tr>
-                    <td>482670</td>
-                    <td>An Hour ago</td>
-                    <td>2465</td>
-                    <td>HOSTC</td>
-                    <td>993498</td>
-                  </tr>
-                  <tr>
-                    <td>4826769</td>
-                    <td>2 Hours ago</td>
-                    <td>2412</td>
-                    <td></td>
-                    <td>998524</td>
-                  </tr>
-                   <tr>
-                    <td>482671</td>
-                    <td>27 minutes ago</td>
-                    <td>1802</td>
-                    <td></td>
-                    <td>999140</td>
-                  </tr>
-                  <tr>
-                    <td>482670</td>
-                    <td>An Hour ago</td>
-                    <td>2465</td>
-                    <td>HOSTC</td>
-                    <td>993498</td>
-                  </tr>
-                  <tr>
-                    <td>4826769</td>
-                    <td>2 Hours ago</td>
-                    <td>2412</td>
-                    <td></td>
-                    <td>998524</td>
-                  </tr>
-                   <tr>
-                    <td>482671</td>
-                    <td>27 minutes ago</td>
-                    <td>1802</td>
-                    <td></td>
-                    <td>999140</td>
-                  </tr>
-                  <tr>
-                    <td>482670</td>
-                    <td>An Hour ago</td>
-                    <td>2465</td>
-                    <td>HOSTC</td>
-                    <td>993498</td>
-                  </tr>
-                  <tr>
-                    <td>4826769</td>
-                    <td>2 Hours ago</td>
-                    <td>2412</td>
-                    <td></td>
-                    <td>998524</td>
-                  </tr>
-                </tbody>
-              </table>
+         <!-- Card Columns Example Social Feed -->
+         <div class="row">
+            <!--<div class="mb-0 mt-4 col-lg-4">-->
+            <!--  <i class="fa fa-newspaper-o"></i>-->
+            <!--  RSS Feed</div>-->
+            <hr class="mt-2">
+            <div class="card-columns col-lg-8">
+            <div class="">
+              <!-- Example Social Card -->
+              <?php 
+            foreach($coindeskRss as $rss){ ?>
+              
+              <div class="card mb-3">
+                <a href="#">
+                  <img class="card-img-top img-fluid w-100" src="https://media.coindesk.com/uploads/2017/05/cropped-coindesk-new-favicon.png" alt="">
+                </a>
+                <div class="card-body">
+                  <h6 class="card-title mb-1">
+                    <a href="<?php echo $link = $rss['child']['']['link'][0]['data'] ?>" target="_blank"><?php print_r($title = $rss['child']['']['title'][0]['data']); ?></a>
+                  </h6></i>
+                  <p><?php echo $description = $rss['child']['']['description'][0]['data'] ?></p>
+                </div>
+                <hr class="my-0">
+                
+                <div class="card-footer small text-muted">
+                  Posted <?php print_r($pubDate = $rss['child']['']['pubDate'][0]['data']); ?>
+                </div>
+              </div>
+              
+            
+               <?php } ?>
+              </div>
             </div>
-          </div>
-          <div class="card-footer small text-muted">
-            Updated yesterday at 11:59 PM
-          </div>
+            <div class="col-lg-4">
+              <a class="twitter-timeline" href="https://twitter.com/HOSTCblockchain?ref_src=twsrc%5Etfw">Tweets by HOSTCblockchain</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
+            <!-- /Card Columns -->
         </div>
+        <!-- Example Tables Card -->
+        <!--<div class="card mb-3">-->
+        <!--  <div class="card-header">-->
+        <!--    <i class="fa fa-table"></i>-->
+        <!--    Recent Blocks-->
+        <!--  </div>-->
+        <!--  <div class="card-body">-->
+        <!--    <div class="table-responsive">-->
+        <!--      <table class="table table-bordered" width="100%" id="dataTable" cellspacing="0">-->
+        <!--        <thead>-->
+        <!--          <tr>-->
+        <!--            <th>Height</th>-->
+        <!--            <th>Age</th>-->
+        <!--            <th>Transactions</th>-->
+        <!--            <th>Mined By</th>-->
+        <!--            <th>Size</th>-->
+        <!--          </tr>-->
+        <!--        </thead>-->
+        <!--        <tfoot>-->
+        <!--          <tr>-->
+        <!--            <th>Height</th>-->
+        <!--            <th>Age</th>-->
+        <!--            <th>Transactions</th>-->
+        <!--            <th>Mined By</th>-->
+        <!--            <th>Size</th>-->
+        <!--          </tr>-->
+        <!--        </tfoot>-->
+        <!--        <tbody>-->
+        <!--          <tr>-->
+        <!--            <td>482671</td>-->
+        <!--            <td>27 minutes ago</td>-->
+        <!--            <td>1802</td>-->
+        <!--            <td></td>-->
+        <!--            <td>999140</td>-->
+        <!--          </tr>-->
+        <!--          <tr>-->
+        <!--            <td>482670</td>-->
+        <!--            <td>An Hour ago</td>-->
+        <!--            <td>2465</td>-->
+        <!--            <td>HOSTC</td>-->
+        <!--            <td>993498</td>-->
+        <!--          </tr>-->
+        <!--          <tr>-->
+        <!--            <td>4826769</td>-->
+        <!--            <td>2 Hours ago</td>-->
+        <!--            <td>2412</td>-->
+        <!--            <td></td>-->
+        <!--            <td>998524</td>-->
+        <!--          </tr>-->
+        <!--           <tr>-->
+        <!--            <td>482671</td>-->
+        <!--            <td>27 minutes ago</td>-->
+        <!--            <td>1802</td>-->
+        <!--            <td></td>-->
+        <!--            <td>999140</td>-->
+        <!--          </tr>-->
+        <!--          <tr>-->
+        <!--            <td>482670</td>-->
+        <!--            <td>An Hour ago</td>-->
+        <!--            <td>2465</td>-->
+        <!--            <td>HOSTC</td>-->
+        <!--            <td>993498</td>-->
+        <!--          </tr>-->
+        <!--          <tr>-->
+        <!--            <td>4826769</td>-->
+        <!--            <td>2 Hours ago</td>-->
+        <!--            <td>2412</td>-->
+        <!--            <td></td>-->
+        <!--            <td>998524</td>-->
+        <!--          </tr>-->
+        <!--           <tr>-->
+        <!--            <td>482671</td>-->
+        <!--            <td>27 minutes ago</td>-->
+        <!--            <td>1802</td>-->
+        <!--            <td></td>-->
+        <!--            <td>999140</td>-->
+        <!--          </tr>-->
+        <!--          <tr>-->
+        <!--            <td>482670</td>-->
+        <!--            <td>An Hour ago</td>-->
+        <!--            <td>2465</td>-->
+        <!--            <td>HOSTC</td>-->
+        <!--            <td>993498</td>-->
+        <!--          </tr>-->
+        <!--          <tr>-->
+        <!--            <td>4826769</td>-->
+        <!--            <td>2 Hours ago</td>-->
+        <!--            <td>2412</td>-->
+        <!--            <td></td>-->
+        <!--            <td>998524</td>-->
+        <!--          </tr>-->
+        <!--           <tr>-->
+        <!--            <td>482671</td>-->
+        <!--            <td>27 minutes ago</td>-->
+        <!--            <td>1802</td>-->
+        <!--            <td></td>-->
+        <!--            <td>999140</td>-->
+        <!--          </tr>-->
+        <!--          <tr>-->
+        <!--            <td>482670</td>-->
+        <!--            <td>An Hour ago</td>-->
+        <!--            <td>2465</td>-->
+        <!--            <td>HOSTC</td>-->
+        <!--            <td>993498</td>-->
+        <!--          </tr>-->
+        <!--          <tr>-->
+        <!--            <td>4826769</td>-->
+        <!--            <td>2 Hours ago</td>-->
+        <!--            <td>2412</td>-->
+        <!--            <td></td>-->
+        <!--            <td>998524</td>-->
+        <!--          </tr>-->
+        <!--           <tr>-->
+        <!--            <td>482671</td>-->
+        <!--            <td>27 minutes ago</td>-->
+        <!--            <td>1802</td>-->
+        <!--            <td></td>-->
+        <!--            <td>999140</td>-->
+        <!--          </tr>-->
+        <!--          <tr>-->
+        <!--            <td>482670</td>-->
+        <!--            <td>An Hour ago</td>-->
+        <!--            <td>2465</td>-->
+        <!--            <td>HOSTC</td>-->
+        <!--            <td>993498</td>-->
+        <!--          </tr>-->
+        <!--          <tr>-->
+        <!--            <td>4826769</td>-->
+        <!--            <td>2 Hours ago</td>-->
+        <!--            <td>2412</td>-->
+        <!--            <td></td>-->
+        <!--            <td>998524</td>-->
+        <!--          </tr>-->
+        <!--           <tr>-->
+        <!--            <td>482671</td>-->
+        <!--            <td>27 minutes ago</td>-->
+        <!--            <td>1802</td>-->
+        <!--            <td></td>-->
+        <!--            <td>999140</td>-->
+        <!--          </tr>-->
+        <!--          <tr>-->
+        <!--            <td>482670</td>-->
+        <!--            <td>An Hour ago</td>-->
+        <!--            <td>2465</td>-->
+        <!--            <td>HOSTC</td>-->
+        <!--            <td>993498</td>-->
+        <!--          </tr>-->
+        <!--          <tr>-->
+        <!--            <td>4826769</td>-->
+        <!--            <td>2 Hours ago</td>-->
+        <!--            <td>2412</td>-->
+        <!--            <td></td>-->
+        <!--            <td>998524</td>-->
+        <!--          </tr>-->
+        <!--           <tr>-->
+        <!--            <td>482671</td>-->
+        <!--            <td>27 minutes ago</td>-->
+        <!--            <td>1802</td>-->
+        <!--            <td></td>-->
+        <!--            <td>999140</td>-->
+        <!--          </tr>-->
+        <!--          <tr>-->
+        <!--            <td>482670</td>-->
+        <!--            <td>An Hour ago</td>-->
+        <!--            <td>2465</td>-->
+        <!--            <td>HOSTC</td>-->
+        <!--            <td>993498</td>-->
+        <!--          </tr>-->
+        <!--          <tr>-->
+        <!--            <td>4826769</td>-->
+        <!--            <td>2 Hours ago</td>-->
+        <!--            <td>2412</td>-->
+        <!--            <td></td>-->
+        <!--            <td>998524</td>-->
+        <!--          </tr>-->
+        <!--           <tr>-->
+        <!--            <td>482671</td>-->
+        <!--            <td>27 minutes ago</td>-->
+        <!--            <td>1802</td>-->
+        <!--            <td></td>-->
+        <!--            <td>999140</td>-->
+        <!--          </tr>-->
+        <!--          <tr>-->
+        <!--            <td>482670</td>-->
+        <!--            <td>An Hour ago</td>-->
+        <!--            <td>2465</td>-->
+        <!--            <td>HOSTC</td>-->
+        <!--            <td>993498</td>-->
+        <!--          </tr>-->
+        <!--          <tr>-->
+        <!--            <td>4826769</td>-->
+        <!--            <td>2 Hours ago</td>-->
+        <!--            <td>2412</td>-->
+        <!--            <td></td>-->
+        <!--            <td>998524</td>-->
+        <!--          </tr>-->
+        <!--           <tr>-->
+        <!--            <td>482671</td>-->
+        <!--            <td>27 minutes ago</td>-->
+        <!--            <td>1802</td>-->
+        <!--            <td></td>-->
+        <!--            <td>999140</td>-->
+        <!--          </tr>-->
+        <!--          <tr>-->
+        <!--            <td>482670</td>-->
+        <!--            <td>An Hour ago</td>-->
+        <!--            <td>2465</td>-->
+        <!--            <td>HOSTC</td>-->
+        <!--            <td>993498</td>-->
+        <!--          </tr>-->
+        <!--          <tr>-->
+        <!--            <td>4826769</td>-->
+        <!--            <td>2 Hours ago</td>-->
+        <!--            <td>2412</td>-->
+        <!--            <td></td>-->
+        <!--            <td>998524</td>-->
+        <!--          </tr>-->
+        <!--           <tr>-->
+        <!--            <td>482671</td>-->
+        <!--            <td>27 minutes ago</td>-->
+        <!--            <td>1802</td>-->
+        <!--            <td></td>-->
+        <!--            <td>999140</td>-->
+        <!--          </tr>-->
+        <!--          <tr>-->
+        <!--            <td>482670</td>-->
+        <!--            <td>An Hour ago</td>-->
+        <!--            <td>2465</td>-->
+        <!--            <td>HOSTC</td>-->
+        <!--            <td>993498</td>-->
+        <!--          </tr>-->
+        <!--          <tr>-->
+        <!--            <td>4826769</td>-->
+        <!--            <td>2 Hours ago</td>-->
+        <!--            <td>2412</td>-->
+        <!--            <td></td>-->
+        <!--            <td>998524</td>-->
+        <!--          </tr>-->
+        <!--           <tr>-->
+        <!--            <td>482671</td>-->
+        <!--            <td>27 minutes ago</td>-->
+        <!--            <td>1802</td>-->
+        <!--            <td></td>-->
+        <!--            <td>999140</td>-->
+        <!--          </tr>-->
+        <!--          <tr>-->
+        <!--            <td>482670</td>-->
+        <!--            <td>An Hour ago</td>-->
+        <!--            <td>2465</td>-->
+        <!--            <td>HOSTC</td>-->
+        <!--            <td>993498</td>-->
+        <!--          </tr>-->
+        <!--          <tr>-->
+        <!--            <td>4826769</td>-->
+        <!--            <td>2 Hours ago</td>-->
+        <!--            <td>2412</td>-->
+        <!--            <td></td>-->
+        <!--            <td>998524</td>-->
+        <!--          </tr>-->
+        <!--        </tbody>-->
+        <!--      </table>-->
+        <!--    </div>-->
+        <!--  </div>-->
+        <!--  <div class="card-footer small text-muted">-->
+        <!--    Updated yesterday at 11:59 PM-->
+        <!--  </div>-->
+        <!--</div>-->
 
       </div>
       <!-- /.container-fluid -->

@@ -60,15 +60,7 @@
   overflow: auto;
 }
 
-.modal-footer {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 60px;
-  padding: 10px;
-  background: #f1f3f5;
-}
+
 
 h1,
 h2,
@@ -102,7 +94,28 @@ p {
 ::-webkit-scrollbar-thumb {
   background: darken(#f1f3f5, 20%);
 }
-
+@media (max-width: 500px){
+	.modal-footer {
+		position: absolute;
+    	/* right: 0; */
+    	bottom: 0;
+	    left: 0;
+	    height: 60px;
+	    padding: 10px;
+	    
+	}
+}
+@media (min-width: 501px)	{
+.modal-footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 60px;
+  padding: 10px;
+  background: #f1f3f5;
+}
+}
 </style>
  <body class="bg-dark">
     <img src="{{ url('public/includes/img/logo.jpg') }}" width="30" height="30" class="credsLogo"/>
@@ -179,7 +192,7 @@ p {
       <div class="modal-body">
         <h2>Welcome</h2>
 
-        <p style="font-family:"> Welcome To HostCoin Wallet V 0.0.1. In this wallet you will be able to exchange and Mine HostCoin Tokens. We are still adding New Exiciting Features to the wallet. Version Release and Code will be shown on <a href=""> Github </a></p>
+        <p style="font-family:"> Welcome To HostCoin Wallet V 0.0.1. In this wallet you will be able to exchange and Mine HostCoin Tokens. We are still adding New Exiciting Features to the wallet. Version Release and Code will be shown on <a href="https://github.com/hostcoinwallet/development" target="_blank"> Github </a></p>
         
         <h2>Security Update</h2>
 
@@ -193,7 +206,7 @@ p {
 
       <!-- footer -->
       <div class="modal-footer">
-        <button class="btn btn-primary"
+        <button class="btn btn-primary mobileCss"
                 data-dismiss="modal">
           CLOSE
         </button>

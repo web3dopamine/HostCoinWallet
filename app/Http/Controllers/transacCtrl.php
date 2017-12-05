@@ -43,12 +43,12 @@ class transacCtrl extends Controller
         
         $address = $address[0];
         
-        $allTranxs = DB::table('transactions')->select('*')->where('address_from', '=', $address)
+        $allTranxs = DB::table('transactions_history')->select('*')->where('address_from', '=', $address)
                                                            ->orWhere('address_to', '=', $address)->get();
                                                            
-        $sent = DB::table('transactions')->select('*')->where('address_from', '=', $address)->get();
+        $sent = DB::table('transactions_history')->select('*')->where('address_from', '=', $address)->get();
         
-        $receive = DB::table('transactions')->select('*')->where('address_to', '=', $address)->get();
+        $receive = DB::table('transactions_history')->select('*')->where('address_to', '=', $address)->get();
         
         return view('transactions.history', ['address' => $address], compact('allTranxs', 'sent', 'receive'));
     }
@@ -183,6 +183,11 @@ class transacCtrl extends Controller
           DB::table('transactions')->insert(
                 array('tranx_id' => $tranx_id, 'address_from' => $address_from, 'address_to' => $address_to, 'amount'=>$qty, 'spent'=> 'false', 'description' => $description)
                 );    
+
+          //Transaction History
+          DB::table('transactions_history')->insert(
+                array('address_from' => $address_from, 'address_to' => $address_to, 'amount'=>$qty, 'description' => $description)
+                );    
                 
           // record Trnx address from to address from
           DB::table('transactions')->insert(
@@ -216,6 +221,9 @@ class transacCtrl extends Controller
             ->update(['balance' => $address_to_balance]);
             
           return redirect('transactions')->with('success', 'The transaction has been successfull..');;  
+          
+              echo 233;
+              exit;
           } else {
           return redirect('transactions')->with('fail', 'The transaction has Failed..');;        
           }
